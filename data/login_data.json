@@ -1,0 +1,17 @@
+{
+    "valid_credentials": {
+        "username": "test@testPlaywright.com",
+        "password": "testpw1234"
+    },
+    "invalid_credentials":
+    [ 
+    {
+        "username": "test@testPlaywright2.com",
+        "password": "wrong"
+    },
+    {
+        "username": "test",
+        "password": "wrong"
+    }
+]
+}
