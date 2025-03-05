@@ -1,3 +1,4 @@
+import logging
 import pytest
 from playwright.sync_api import sync_playwright
 from utils.config import Config
@@ -20,6 +21,10 @@ def login_data():
 def base_url():
     return Config.BASE_URL
 
+@pytest.fixture(scope="session")
+def base_api_url():
+    return Config.BASE_API_URL
+
 @pytest.fixture(scope="function")
 def page(browser):
     context = browser.new_context()
@@ -27,3 +32,8 @@ def page(browser):
     yield page
     context.close()
 
+@pytest.fixture(scope="session")
+def logger():
+    logging.basicConfig(level=logging.INFO)
+    log = logging.getLogger(__name__)
+    return log

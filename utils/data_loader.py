@@ -9,6 +9,7 @@ class DataLoader:
     def __init__(self, data_dir: str = "data"):
         self.base_path = Path(__file__).parent.parent.resolve()
         self.data_dir = os.path.join(self.base_path, data_dir)
+        #test this
         
     def load_json(self, filename: str) -> Dict[str, Any]:
         """Load data from JSON file"""
