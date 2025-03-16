@@ -6,7 +6,8 @@ from utils.config import Config
 from utils.data_loader import DataLoader
 from allure_commons.types import AttachmentType
 import allure
-import requests
+from appium import webdriver
+from appium.options.android import UiAutomator2Options
 
 # All fixtures should be stored here.
 
@@ -81,3 +82,15 @@ def pytest_runtest_makereport(item, call):
     rep = outcome.get_result()
     setattr(item, "rep_" + rep.when, rep)
     return rep
+
+@pytest.fixture(scope="function")
+def appdriver():
+    options = UiAutomator2Options()
+    options.platform_name = Config.PLATFORM_NAME
+    options.device_name = Config.DEVICE_NAME
+    options.app_package = Config.APP_PACKAGE
+    options.app_activity = Config.APP_ACTIVITY
+    options.automation_name = Config.AUTOMATION_NAME
+    driver = webdriver.Remote(Config.APPIUM_URL, options=options)
+    yield driver
+    driver.quit()

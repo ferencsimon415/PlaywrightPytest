@@ -4,3 +4,4 @@ pytest-playwright
 pyyaml
 python-dotenv
 allure-pytest
+Appium-Python-Client
